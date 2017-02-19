@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var lowRate: UILabel!
     @IBOutlet weak var btnRefresh: UIButton!
     @IBOutlet weak var lblRefresh: UILabel!
+    @IBOutlet weak var progBar: UIActivityIndicatorView!
 
      var ratesURL : String = "https://www.dbs.com.sg/personal/rates-online/foreign-currency-foreign-exchange.page?pid=sg-dbs-pweb-home-span4module-forex-txtmore-"
      var alertMessage : String?
@@ -27,7 +28,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
      
-     
+          progBar.isHidden = true
           btnRefresh.layer.cornerRadius = 5
           btnRefresh.layer.borderWidth = 1
           btnRefresh.layer.borderColor = UIColor.yellow.cgColor
@@ -44,22 +45,13 @@ class ViewController: UIViewController {
     
      func refreshTapped(_ button: UIButton) {
      
-          fetchRates()
-
-     }
-     
-     func scheduleNotification() {
-          
-          fetchRates()
-          let notification = UILocalNotification()
-          
-          if self.currRate > 34.20 {
-               alertMessage = ("Current Rate is \(self.currRate)")
-               notification.alertBody = alertMessage
-               notification.fireDate = Date(timeIntervalSinceNow: 5)
-               UIApplication.shared.scheduleLocalNotification(notification)
+          currentRate.textColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1)
+          progBar.isHidden = false
+          let when = DispatchTime.now() + 2
+          DispatchQueue.main.asyncAfter(deadline: when) {
+               self.fetchRates()
           }
-          
+
      }
      
      func fetchRates() {
@@ -116,6 +108,7 @@ class ViewController: UIViewController {
      func checkRates() {
           // Set values to High and Low
           
+          progBar.isHidden = true
           self.currentRate.text = String(format: "%.2f", self.currRate)
           
           let hiRateKey = "hiRate"

@@ -19,6 +19,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     @IBOutlet weak var updateTime: UILabel!
     @IBOutlet weak var hiRate: UILabel!
     @IBOutlet weak var loRate: UILabel!
+    @IBOutlet weak var progBar: UIActivityIndicatorView!
     
     var taskManager = Timer()
     var currRate : Float = 00.00
@@ -29,9 +30,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         super.viewDidLoad()
         // Invokes the main process
         
-        //let taskManager = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.fetchRates), userInfo: nil, repeats: true)
-        //RunLoop.main.add(taskManager, forMode: RunLoopMode.commonModes)
-        
+        progBar.isHidden = true
         fetchRates()
         
     }
@@ -63,7 +62,13 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     func tapFunction(sender:UITapGestureRecognizer) {
         //Reload when tapped
-        fetchRates()
+        
+        self.currentRate.isHidden = true
+        self.progBar.isHidden = false
+        let when = DispatchTime.now() + 2
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            self.fetchRates()
+        }
     }
     
     
@@ -101,6 +106,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     func checkRates() {
         // Set values to High and Low
         
+        self.progBar.isHidden = true
+        self.currentRate.isHidden = false
         self.currentRate.text = String(format: "%.2f", self.currRate)
         
         let hiRateKey = "hiRate"
