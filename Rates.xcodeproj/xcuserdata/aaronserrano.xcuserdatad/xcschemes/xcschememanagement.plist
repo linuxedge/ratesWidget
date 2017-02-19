@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>RatesWidget.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -23,6 +28,11 @@
 			<true/>
 		</dict>
 		<key>1C25BA571E58452800A5CF0D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1C25BA6D1E58457100A5CF0D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
