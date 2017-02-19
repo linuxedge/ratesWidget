@@ -14,6 +14,11 @@
 		1C25BA471E58452800A5CF0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C25BA451E58452800A5CF0D /* LaunchScreen.storyboard */; };
 		1C25BA521E58452800A5CF0D /* RatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C25BA511E58452800A5CF0D /* RatesTests.swift */; };
 		1C25BA5D1E58452800A5CF0D /* RatesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C25BA5C1E58452800A5CF0D /* RatesUITests.swift */; };
+		1C25BA711E58457100A5CF0D /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C25BA701E58457100A5CF0D /* NotificationCenter.framework */; };
+		1C25BA741E58457100A5CF0D /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C25BA731E58457100A5CF0D /* TodayViewController.swift */; };
+		1C25BA7B1E58457100A5CF0D /* RatesWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1C25BA6E1E58457100A5CF0D /* RatesWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1C25BA831E58475900A5CF0D /* Rates.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1C25BA821E58475900A5CF0D /* Rates.plist */; };
+		1C25BA851E584B2700A5CF0D /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C25BA871E584B2700A5CF0D /* MainInterface.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,12 +36,33 @@
 			remoteGlobalIDString = 1C25BA381E58452800A5CF0D;
 			remoteInfo = Rates;
 		};
+		1C25BA791E58457100A5CF0D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1C25BA311E58452800A5CF0D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1C25BA6D1E58457100A5CF0D;
+			remoteInfo = RatesWidget;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1C25BA7F1E58457100A5CF0D /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1C25BA7B1E58457100A5CF0D /* RatesWidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1C25BA391E58452800A5CF0D /* Rates.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rates.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C25BA3C1E58452800A5CF0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1C25BA3E1E58452800A5CF0D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1C25BA3E1E58452800A5CF0D /* ViewController.swift */ = {isa = PBXFileReference; indentWidth = 5; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; tabWidth = 5; };
 		1C25BA411E58452800A5CF0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1C25BA431E58452800A5CF0D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1C25BA461E58452800A5CF0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +73,12 @@
 		1C25BA581E58452800A5CF0D /* RatesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RatesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C25BA5C1E58452800A5CF0D /* RatesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesUITests.swift; sourceTree = "<group>"; };
 		1C25BA5E1E58452800A5CF0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1C25BA6E1E58457100A5CF0D /* RatesWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RatesWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C25BA701E58457100A5CF0D /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		1C25BA731E58457100A5CF0D /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		1C25BA781E58457100A5CF0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1C25BA821E58475900A5CF0D /* Rates.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Rates.plist; sourceTree = "<group>"; };
+		1C25BA861E584B2700A5CF0D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,15 +103,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1C25BA6B1E58457100A5CF0D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C25BA711E58457100A5CF0D /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		1C25BA301E58452800A5CF0D = {
 			isa = PBXGroup;
 			children = (
+				1C25BA721E58457100A5CF0D /* RatesWidget */,
 				1C25BA3B1E58452800A5CF0D /* Rates */,
 				1C25BA501E58452800A5CF0D /* RatesTests */,
 				1C25BA5B1E58452800A5CF0D /* RatesUITests */,
+				1C25BA6F1E58457100A5CF0D /* Frameworks */,
 				1C25BA3A1E58452800A5CF0D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +132,7 @@
 				1C25BA391E58452800A5CF0D /* Rates.app */,
 				1C25BA4D1E58452800A5CF0D /* RatesTests.xctest */,
 				1C25BA581E58452800A5CF0D /* RatesUITests.xctest */,
+				1C25BA6E1E58457100A5CF0D /* RatesWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,6 +146,7 @@
 				1C25BA431E58452800A5CF0D /* Assets.xcassets */,
 				1C25BA451E58452800A5CF0D /* LaunchScreen.storyboard */,
 				1C25BA481E58452800A5CF0D /* Info.plist */,
+				1C25BA821E58475900A5CF0D /* Rates.plist */,
 			);
 			path = Rates;
 			sourceTree = "<group>";
@@ -125,6 +169,24 @@
 			path = RatesUITests;
 			sourceTree = "<group>";
 		};
+		1C25BA6F1E58457100A5CF0D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1C25BA701E58457100A5CF0D /* NotificationCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1C25BA721E58457100A5CF0D /* RatesWidget */ = {
+			isa = PBXGroup;
+			children = (
+				1C25BA731E58457100A5CF0D /* TodayViewController.swift */,
+				1C25BA871E584B2700A5CF0D /* MainInterface.storyboard */,
+				1C25BA781E58457100A5CF0D /* Info.plist */,
+			);
+			path = RatesWidget;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,10 +197,12 @@
 				1C25BA351E58452800A5CF0D /* Sources */,
 				1C25BA361E58452800A5CF0D /* Frameworks */,
 				1C25BA371E58452800A5CF0D /* Resources */,
+				1C25BA7F1E58457100A5CF0D /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				1C25BA7A1E58457100A5CF0D /* PBXTargetDependency */,
 			);
 			name = Rates;
 			productName = Rates;
@@ -181,6 +245,23 @@
 			productReference = 1C25BA581E58452800A5CF0D /* RatesUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		1C25BA6D1E58457100A5CF0D /* RatesWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1C25BA7C1E58457100A5CF0D /* Build configuration list for PBXNativeTarget "RatesWidget" */;
+			buildPhases = (
+				1C25BA6A1E58457100A5CF0D /* Sources */,
+				1C25BA6B1E58457100A5CF0D /* Frameworks */,
+				1C25BA6C1E58457100A5CF0D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RatesWidget;
+			productName = RatesWidget;
+			productReference = 1C25BA6E1E58457100A5CF0D /* RatesWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -208,6 +289,11 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 1C25BA381E58452800A5CF0D;
 					};
+					1C25BA6D1E58457100A5CF0D = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 2N2JRX42RE;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 1C25BA341E58452800A5CF0D /* Build configuration list for PBXProject "Rates" */;
@@ -226,6 +312,7 @@
 				1C25BA381E58452800A5CF0D /* Rates */,
 				1C25BA4C1E58452800A5CF0D /* RatesTests */,
 				1C25BA571E58452800A5CF0D /* RatesUITests */,
+				1C25BA6D1E58457100A5CF0D /* RatesWidget */,
 			);
 		};
 /* End PBXProject section */
@@ -235,6 +322,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C25BA831E58475900A5CF0D /* Rates.plist in Resources */,
 				1C25BA471E58452800A5CF0D /* LaunchScreen.storyboard in Resources */,
 				1C25BA441E58452800A5CF0D /* Assets.xcassets in Resources */,
 				1C25BA421E58452800A5CF0D /* Main.storyboard in Resources */,
@@ -252,6 +340,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1C25BA6C1E58457100A5CF0D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C25BA851E584B2700A5CF0D /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +379,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1C25BA6A1E58457100A5CF0D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C25BA741E58457100A5CF0D /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -295,6 +399,11 @@
 			isa = PBXTargetDependency;
 			target = 1C25BA381E58452800A5CF0D /* Rates */;
 			targetProxy = 1C25BA591E58452800A5CF0D /* PBXContainerItemProxy */;
+		};
+		1C25BA7A1E58457100A5CF0D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1C25BA6D1E58457100A5CF0D /* RatesWidget */;
+			targetProxy = 1C25BA791E58457100A5CF0D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -313,6 +422,15 @@
 				1C25BA461E58452800A5CF0D /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		1C25BA871E584B2700A5CF0D /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1C25BA861E584B2700A5CF0D /* en */,
+			);
+			name = MainInterface.storyboard;
+			path = "../../Currency Monitor/CurrencyMonitorWidget";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -414,9 +532,11 @@
 		1C25BA621E58452800A5CF0D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2N2JRX42RE;
 				INFOPLIST_FILE = Rates/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.linuxedge.Rates;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -427,9 +547,11 @@
 		1C25BA631E58452800A5CF0D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 2N2JRX42RE;
 				INFOPLIST_FILE = Rates/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.linuxedge.Rates;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -495,6 +617,34 @@
 			};
 			name = Release;
 		};
+		1C25BA7D1E58457100A5CF0D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 2N2JRX42RE;
+				INFOPLIST_FILE = RatesWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.linuxedge.Rates.RatesWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		1C25BA7E1E58457100A5CF0D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 2N2JRX42RE;
+				INFOPLIST_FILE = RatesWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.linuxedge.Rates.RatesWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -514,6 +664,7 @@
 				1C25BA631E58452800A5CF0D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1C25BA641E58452800A5CF0D /* Build configuration list for PBXNativeTarget "RatesTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +673,7 @@
 				1C25BA661E58452800A5CF0D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1C25BA671E58452800A5CF0D /* Build configuration list for PBXNativeTarget "RatesUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +682,16 @@
 				1C25BA691E58452800A5CF0D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1C25BA7C1E58457100A5CF0D /* Build configuration list for PBXNativeTarget "RatesWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C25BA7D1E58457100A5CF0D /* Debug */,
+				1C25BA7E1E58457100A5CF0D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
