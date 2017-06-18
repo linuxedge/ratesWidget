@@ -32,7 +32,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         super.viewDidLoad()
         // Invokes the main process
         
-        self.updateTime.text = "Initializing..."
+        self.updateTime.text = "--------------------"
         progBar.isHidden = true
         fetchRates()
         
@@ -47,7 +47,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             
             self.currentRate.isHidden = true
             self.progBar.isHidden = false
-            self.updateTime.text = "Connecting to DBS"
+            self.hiRate.text = "00.00"
+            self.loRate.text = "00.00"
+            self.rate.text = "00.00"
+            self.updateTime.text = "--------------------"
             let when = DispatchTime.now() + 0.2
             DispatchQueue.main.asyncAfter(deadline: when) {
                 self.parseHTML()
@@ -72,7 +75,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     func tapFunction(sender:UITapGestureRecognizer) {
         //Reload when tapped
-        
         self.fetchRates()
 
     }
@@ -147,7 +149,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             
             let hiRateValue = dict.object(forKey: hiRateKey) as! String?
             let lowRateValue = dict.object(forKey: lowRateKey) as! String?
-            let prevRateValue = dict.object(forKey: prevRateKey) as! String?
+            _ = dict.object(forKey: prevRateKey) as! String?
             
             //hiRateValue = "35.23"
             //lowRateValue = "34.17"
@@ -177,17 +179,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 dict.setObject(String(format: "%.2f", self.currRate), forKey: lowRateKey as NSCopying)
             }
             self.loRate.text = dict.object(forKey: lowRateKey) as! String?
-            
-            //if prevRateValue != " " {
-            //    let fltPrevRate = Float(prevRateValue!)
-            //if fltPrevRate! < self.currRate {
-            //        self.currentRate.textColor = UIColor(red: 0.243, green: 0.603, blue: 0.643, alpha: 1)
-            //    } else {
-            //        self.currentRate.textColor = UIColor(red: 255, green: 233, blue: 0, alpha: 1)
-            //    }
-            //} else {
-            //self.currentRate.textColor = UIColor(red: 0.243, green: 0.603, blue: 0.643, alpha: 1)
-            //}
             
             dict.setObject(String(format: "%.2f", self.currRate), forKey: prevRateKey as NSCopying)
             dict.write(toFile: path, atomically: false)

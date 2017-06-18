@@ -153,7 +153,7 @@ class ViewController: UIViewController {
                
                let hiRateValue = dict.object(forKey: hiRateKey) as! String?
                let lowRateValue = dict.object(forKey: lowRateKey) as! String?
-               let prevRateValue = dict.object(forKey: prevRateKey) as! String?
+               _ = dict.object(forKey: prevRateKey) as! String?
                
                //hiRateValue = "35.23"
                //lowRateValue = "34.17"
@@ -172,9 +172,9 @@ class ViewController: UIViewController {
                }
                self.hiRate.text = dict.object(forKey: hiRateKey) as! String?
                
-               if lowRateValue != " " || lowRateValue != "00.00" {
+               if lowRateValue != " " {
                     let fltLowRate = Float(lowRateValue!)
-                    if fltLowRate! > self.currRate || fltLowRate! == 00.00 {
+                    if fltLowRate! > self.currRate && self.currRate > 0 {
                          dict.setObject(String(format: "%.2f", self.currRate), forKey: lowRateKey as NSCopying)
                     } else {
                          dict.setObject(String(format: "%.2f", fltLowRate!), forKey: lowRateKey as NSCopying)
@@ -183,8 +183,6 @@ class ViewController: UIViewController {
                     dict.setObject(String(format: "%.2f", self.currRate), forKey: lowRateKey as NSCopying)
                }
                self.lowRate.text = dict.object(forKey: lowRateKey) as! String?
-               
-               self.currentRate.textColor = UIColor(red: 0.243, green: 0.603, blue: 0.643, alpha: 1)
                
                dict.setObject(String(format: "%.2f", self.currRate), forKey: prevRateKey as NSCopying)
                dict.write(toFile: path, atomically: false)
@@ -198,6 +196,7 @@ class ViewController: UIViewController {
                self.hiRate.text = dict.object(forKey: hiRateKey) as! String?
                self.lowRate.text = dict.object(forKey: lowRateKey) as! String?
           }
+
           
      }
      
