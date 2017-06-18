@@ -8,7 +8,7 @@
 	<string>00.00</string>
 	<key>prevRate</key>
 	<string>00.00</string>
-	<key>alert</key>
-	<false/>
+	<key>currency</key>
+	<string>SGD</string>
 </dict>
 </plist>

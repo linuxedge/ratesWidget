@@ -20,9 +20,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     @IBOutlet weak var hiRate: UILabel!
     @IBOutlet weak var loRate: UILabel!
     @IBOutlet weak var progBar: UIActivityIndicatorView!
+    @IBOutlet weak var rate: UILabel!
     
     var taskManager = Timer()
     var currRate : Float = 00.00
+    var newRate : Float = 00.00
     var ratesURL : String = "https://www.dbs.com.sg/personal/rates-online/foreign-currency-foreign-exchange.page?pid=sg-dbs-pweb-home-span4module-forex-txtmore-"
     let fileName = "CurrencyMonitorRates"
     
@@ -30,6 +32,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         super.viewDidLoad()
         // Invokes the main process
         
+        self.updateTime.text = "Initializing..."
         progBar.isHidden = true
         fetchRates()
         
@@ -42,10 +45,17 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // Check for Internet Connection
         if self.isInternetAvailable() {
             
+            self.currentRate.isHidden = true
+            self.progBar.isHidden = false
+            self.updateTime.text = "Connecting to DBS"
+            let when = DispatchTime.now() + 0.2
+            DispatchQueue.main.asyncAfter(deadline: when) {
+                self.parseHTML()
+            }
+            
             // Set current date and time to Update Date & Time in Widget.
             self.updateTime.text = DateFormatter.localizedString(from: NSDate() as Date, dateStyle: .medium , timeStyle: .short)
-            
-            self.parseHTML()
+
         } else {
             
             // No Internet Connection - Set Update Label to No Internet
@@ -63,12 +73,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     func tapFunction(sender:UITapGestureRecognizer) {
         //Reload when tapped
         
-        self.currentRate.isHidden = true
-        self.progBar.isHidden = false
-        let when = DispatchTime.now() + 2
-        DispatchQueue.main.asyncAfter(deadline: when) {
-            self.fetchRates()
-        }
+        self.fetchRates()
+
     }
     
     
@@ -89,6 +95,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             let range = us.range(of:"(?<=<span>Philippine Peso</span></th><th class=\"column-2 mobile-no-border-red\" data-label=\"Unit\" data-group-label=\"For amounts up to S\\$200,000\">100</th><td class=\"column-3\" data-label=\"Selling TT/OD\">)[^*]+(?=</td><td class=\"column-4 odd\" data-label=\"Buying TT\">0.0000</td><td class=\"column-5 last last-coulmn\" data-label=\"Buying OD\">0.0000</td>\n</tr>\n<tr class=\"odd filter_currency filter_New_Taiwan_Dollar\">)", options:.regularExpression)
             
             if range != nil {
+                self.newRate = Float(us.substring(with: range!))!
                 self.currRate = 100 / Float(us.substring(with: range!))!
                 self.checkRates()
             }
@@ -109,6 +116,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         self.progBar.isHidden = true
         self.currentRate.isHidden = false
         self.currentRate.text = String(format: "%.2f", self.currRate)
+        self.rate.text = String(format: "%.4f", self.newRate)
         
         let hiRateKey = "hiRate"
         let lowRateKey = "lowRate"
@@ -170,16 +178,16 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             }
             self.loRate.text = dict.object(forKey: lowRateKey) as! String?
             
-            if prevRateValue != " " {
-                let fltPrevRate = Float(prevRateValue!)
-                if fltPrevRate! < self.currRate {
-                    self.currentRate.textColor = UIColor(red: 0.243, green: 0.603, blue: 0.643, alpha: 1)
-                } else {
-                    self.currentRate.textColor = UIColor(red: 255, green: 233, blue: 0, alpha: 1)
-                }
-            } else {
-                self.currentRate.textColor = UIColor(red: 0.243, green: 0.603, blue: 0.643, alpha: 1)
-            }
+            //if prevRateValue != " " {
+            //    let fltPrevRate = Float(prevRateValue!)
+            //if fltPrevRate! < self.currRate {
+            //        self.currentRate.textColor = UIColor(red: 0.243, green: 0.603, blue: 0.643, alpha: 1)
+            //    } else {
+            //        self.currentRate.textColor = UIColor(red: 255, green: 233, blue: 0, alpha: 1)
+            //    }
+            //} else {
+            //self.currentRate.textColor = UIColor(red: 0.243, green: 0.603, blue: 0.643, alpha: 1)
+            //}
             
             dict.setObject(String(format: "%.2f", self.currRate), forKey: prevRateKey as NSCopying)
             dict.write(toFile: path, atomically: false)

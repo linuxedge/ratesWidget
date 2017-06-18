@@ -16,7 +16,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var lowRate: UILabel!
     @IBOutlet weak var btnRefresh: UIButton!
     @IBOutlet weak var lblRefresh: UILabel!
+    @IBOutlet weak var lblCurrRate: UILabel!
     @IBOutlet weak var progBar: UIActivityIndicatorView!
+    @IBOutlet weak var rate: UILabel!
 
      var ratesURL : String = "https://www.dbs.com.sg/personal/rates-online/foreign-currency-foreign-exchange.page?pid=sg-dbs-pweb-home-span4module-forex-txtmore-"
      var alertMessage : String?
@@ -27,7 +29,8 @@ class ViewController: UIViewController {
      override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-     
+          
+          initialize()
           progBar.isHidden = true
           btnRefresh.layer.cornerRadius = 5
           btnRefresh.layer.borderWidth = 1
@@ -35,6 +38,11 @@ class ViewController: UIViewController {
           fetchRates()
           btnRefresh.addTarget(self, action: #selector(self.refreshTapped(_:)), for: .touchDown)
 
+     }
+     
+     func initialize() {
+          self.Logger(log: "Initializing screen..")
+          checkRates()
      }
 
      override func didReceiveMemoryWarning() {
@@ -45,9 +53,11 @@ class ViewController: UIViewController {
     
      func refreshTapped(_ button: UIButton) {
      
-          currentRate.textColor = UIColor(red: 255, green: 255, blue: 255, alpha: 1)
+          currentRate.isHidden = true
           progBar.isHidden = false
-          let when = DispatchTime.now() + 2
+          lblCurrRate.text = "Connecting to DBS"
+          rate.text = " "
+          let when = DispatchTime.now() + 0.2
           DispatchQueue.main.asyncAfter(deadline: when) {
                self.fetchRates()
           }
@@ -57,7 +67,7 @@ class ViewController: UIViewController {
      func fetchRates() {
           
           Logger(log: "Start...")
-          
+        
           // Check for Internet Connection
           if self.isInternetAvailable() {
                
@@ -92,6 +102,7 @@ class ViewController: UIViewController {
                let range = us.range(of:"(?<=<span>Philippine Peso</span></th><th class=\"column-2 mobile-no-border-red\" data-label=\"Unit\" data-group-label=\"For amounts up to S\\$200,000\">100</th><td class=\"column-3\" data-label=\"Selling TT/OD\">)[^*]+(?=</td><td class=\"column-4 odd\" data-label=\"Buying TT\">0.0000</td><td class=\"column-5 last last-coulmn\" data-label=\"Buying OD\">0.0000</td>\n</tr>\n<tr class=\"odd filter_currency filter_New_Taiwan_Dollar\">)", options:.regularExpression)
                
                if range != nil {
+                    rate.text = String(Float(us.substring(with: range!))!)
                     self.currRate = 100 / Float(us.substring(with: range!))!
                     self.checkRates()
                }
@@ -109,6 +120,8 @@ class ViewController: UIViewController {
           // Set values to High and Low
           
           progBar.isHidden = true
+          currentRate.isHidden = false
+          lblCurrRate.text = "CURRENT RATE"
           self.currentRate.text = String(format: "%.2f", self.currRate)
           
           let hiRateKey = "hiRate"
@@ -145,7 +158,6 @@ class ViewController: UIViewController {
                //hiRateValue = "35.23"
                //lowRateValue = "34.17"
                
-               
                let dict : NSMutableDictionary = [:]
                
                if hiRateValue != " " {
@@ -172,16 +184,7 @@ class ViewController: UIViewController {
                }
                self.lowRate.text = dict.object(forKey: lowRateKey) as! String?
                
-               if prevRateValue != " " {
-                    let fltPrevRate = Float(prevRateValue!)
-                    if fltPrevRate! < self.currRate {
-                         self.currentRate.textColor = UIColor(red: 0.243, green: 0.603, blue: 0.643, alpha: 1)
-                    } else {
-                         self.currentRate.textColor = UIColor(red: 255, green: 233, blue: 0, alpha: 1)
-                    }
-               } else {
-                    self.currentRate.textColor = UIColor(red: 0.243, green: 0.603, blue: 0.643, alpha: 1)
-               }
+               self.currentRate.textColor = UIColor(red: 0.243, green: 0.603, blue: 0.643, alpha: 1)
                
                dict.setObject(String(format: "%.2f", self.currRate), forKey: prevRateKey as NSCopying)
                dict.write(toFile: path, atomically: false)
